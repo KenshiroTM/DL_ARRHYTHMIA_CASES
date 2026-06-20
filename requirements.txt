@@ -1,0 +1,8 @@
+huggingface-hub
+pandas==2.3.3
+wfdb==4.1.2
+neurokit2==0.2.13
+dearpygui==2.2
+pyarrow==23.0.1
+vitaldb==1.6.0
+seaborn==0.13.2

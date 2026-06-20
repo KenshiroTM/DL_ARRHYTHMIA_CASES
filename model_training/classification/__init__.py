@@ -1,0 +1,4 @@
+from .evaluate_classificator import evaluate_classificator
+from .setup_classificator_architecture import setup_classificator_architecture
+from .train_classificator import train_classificator
+from .split_data_classificator import split_data_classificator

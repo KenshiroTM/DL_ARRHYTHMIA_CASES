@@ -1,0 +1,167 @@
+{
+  "eval_info": {
+    "split": "Test",
+    "timestamp": "2026-06-04T16:04:08.693878"
+  },
+  "metrics": {
+    "loss": 0.1507,
+    "accuracy": 0.9586,
+    "f1_weighted": 0.9571,
+    "f1_macro": 0.9266,
+    "f1_micro": 0.9586
+  },
+  "per_class": {
+    "SBRAD": {
+      "precision": 0.9834,
+      "recall": 0.9966,
+      "f1-score": 0.99,
+      "support": 891
+    },
+    "SR": {
+      "precision": 0.9262,
+      "recall": 0.956,
+      "f1-score": 0.9409,
+      "support": 591
+    },
+    "STACH": {
+      "precision": 0.9544,
+      "recall": 0.9721,
+      "f1-score": 0.9632,
+      "support": 323
+    },
+    "AFLT": {
+      "precision": 0.9589,
+      "recall": 0.9459,
+      "f1-score": 0.9524,
+      "support": 148
+    },
+    "SARRH": {
+      "precision": 0.9432,
+      "recall": 0.6748,
+      "f1-score": 0.7867,
+      "support": 123
+    }
+  },
+  "classification_report": {
+    "SBRAD": {
+      "precision": 0.9833887043189369,
+      "recall": 0.9966329966329966,
+      "f1-score": 0.9899665551839465,
+      "support": 891.0
+    },
+    "SR": {
+      "precision": 0.9262295081967213,
+      "recall": 0.9560067681895094,
+      "f1-score": 0.9408825978351374,
+      "support": 591.0
+    },
+    "STACH": {
+      "precision": 0.9544072948328267,
+      "recall": 0.9721362229102167,
+      "f1-score": 0.9631901840490797,
+      "support": 323.0
+    },
+    "AFLT": {
+      "precision": 0.958904109589041,
+      "recall": 0.9459459459459459,
+      "f1-score": 0.9523809523809523,
+      "support": 148.0
+    },
+    "SARRH": {
+      "precision": 0.9431818181818182,
+      "recall": 0.6747967479674797,
+      "f1-score": 0.7867298578199052,
+      "support": 123.0
+    },
+    "accuracy": 0.9585741811175337,
+    "macro avg": {
+      "precision": 0.9532222870238687,
+      "recall": 0.9091037363292298,
+      "f1-score": 0.9266300294538043,
+      "support": 2076.0
+    },
+    "weighted avg": {
+      "precision": 0.9584796257124181,
+      "recall": 0.9585741811175337,
+      "f1-score": 0.9571061651741544,
+      "support": 2076.0
+    }
+  },
+  "model_config": {
+    "experiment_name": "customECG",
+    "signal_cols": [
+      "signal"
+    ],
+    "feature_cols": null,
+    "label_col": "scp_codes",
+    "amp": true,
+    "num_workers": 4,
+    "persistent_workers": true,
+    "pin_memory": true,
+    "compile_model": true,
+    "epochs": 50,
+    "batch_size": 64,
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "optimizer": "adam",
+    "scheduler": "cosine",
+    "patience": 5,
+    "min_delta": 0.0001,
+    "momentum": 0.9,
+    "step_size": 10,
+    "gamma": 0.1,
+    "sched_patience": 3,
+    "augment": true,
+    "noise_std": 0.01,
+    "scale_low": 0.9,
+    "scale_high": 1.1,
+    "time_shift_pct": 0.1,
+    "class_weight_method": null,
+    "focal_gamma": 2.0,
+    "focal_alpha": null,
+    "rhythm_weight": 0.05,
+    "save_path": "models/weights/customECG_arrhythmia.pth",
+    "model_type": "arrhythmia"
+  },
+  "confusion_matrix": [
+    [
+      888,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      8,
+      565,
+      13,
+      1,
+      4
+    ],
+    [
+      0,
+      6,
+      314,
+      3,
+      0
+    ],
+    [
+      1,
+      7,
+      0,
+      140,
+      0
+    ],
+    [
+      6,
+      31,
+      2,
+      1,
+      83
+    ]
+  ],
+  "predictions_summary": {
+    "total_samples": 2076,
+    "correct_predictions": 1990
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "eval_info": {
+    "split": "Test",
+    "experiment_name": "anomaly_vae_small_batch",
+    "timestamp": "2026-06-13T14:16:44.315863"
+  },
+  "parameters": {
+    "signals": [
+      "ppg_signal",
+      "ecg_signal"
+    ],
+    "threshold": 2.049901,
+    "percentile_threshold": 95,
+    "model_config": {
+      "experiment_name": "anomaly_vae_small_batch",
+      "signal_cols": [
+        "ppg_signal",
+        "ecg_signal"
+      ],
+      "feature_cols": null,
+      "label_col": "scp_codes",
+      "amp": true,
+      "num_workers": 4,
+      "persistent_workers": true,
+      "pin_memory": true,
+      "compile_model": true,
+      "epochs": 50,
+      "batch_size": 16,
+      "lr": 0.0001,
+      "weight_decay": 0.0001,
+      "optimizer": "adamw",
+      "scheduler": "cosine",
+      "patience": 5,
+      "min_delta": 0.0001,
+      "momentum": 0.9,
+      "step_size": 10,
+      "gamma": 0.1,
+      "sched_patience": 3,
+      "augment": false,
+      "noise_std": 0.01,
+      "scale_low": 0.9,
+      "scale_high": 1.1,
+      "time_shift_pct": 0.1,
+      "class_weight_method": null,
+      "focal_gamma": 2.0,
+      "focal_alpha": null,
+      "rhythm_weight": 0.05,
+      "save_path": "models/weights/anomaly_vae_small_batch.pth",
+      "model_type": null
+    }
+  },
+  "dataset_stats": {
+    "norm_count": 582,
+    "anomaly_count": 8,
+    "total_samples": 590
+  },
+  "metrics": {
+    "auroc_mse": 0.5777,
+    "auroc_neural_rhythm": 0.5103,
+    "auroc_classical_rhythm": 0.5842,
+    "auroc_combined": 0.5485,
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "confusion_matrix": {
+    "true_positives": 0,
+    "false_positives": 29,
+    "false_negatives": 8
+  },
+  "error_stats": {
+    "mse_norm_mean": 1.991558,
+    "mse_norm_std": 0.124365,
+    "mse_anom_mean": 2.002141,
+    "mse_anom_std": 0.005751,
+    "neural_norm_mean": 0.058471,
+    "neural_norm_std": 0.019952,
+    "neural_anom_mean": 0.058069,
+    "neural_anom_std": 0.016483,
+    "classical_norm_mean": 0.093932,
+    "classical_norm_std": 0.183201,
+    "classical_anom_mean": 0.123087,
+    "classical_anom_std": 0.093926,
+    "comb_norm_mean": 2.020793,
+    "comb_norm_std": 0.126234,
+    "comb_anom_mean": 2.031176,
+    "comb_anom_std": 0.008485
+  }
+}

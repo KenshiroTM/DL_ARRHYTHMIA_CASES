@@ -1,0 +1,33 @@
+============================================================
+  HIPERPARAMETRY — ECGFounde_with_weights
+============================================================
+
+Trening:
+  epochs: 50
+  batch_size: 64
+  lr: 0.0001
+  weight_decay: 0.0001
+  optimizer: adam
+  scheduler: cosine
+
+Early stopping:
+  patience: 5
+  min_delta: 0.0001
+
+Augmentacja:
+  augment: True
+  noise_std: 0.01
+  scale_low: 0.9
+  scale_high: 1.1
+  time_shift_pct: 0.1
+
+Ważenie klas:
+  class_weight_method: None
+  focal_gamma: 2.0
+
+Dane:
+  signal_cols: ['signal']
+  label_col: scp_codes
+  amp: True
+  compile_model: True
+

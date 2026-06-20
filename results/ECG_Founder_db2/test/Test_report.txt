@@ -1,0 +1,11 @@
+Test loss: 0.4481 | F1: 0.8667
+
+              precision    recall  f1-score   support
+
+        NORM       0.90      0.97      0.93       795
+         NDT       0.72      0.56      0.63       117
+        LAFB       0.76      0.25      0.38        52
+
+    accuracy                           0.88       964
+   macro avg       0.79      0.59      0.65       964
+weighted avg       0.87      0.88      0.87       964

@@ -1,0 +1,104 @@
+{
+  "eval_info": {
+    "split": "Val",
+    "timestamp": "2026-06-04T16:14:44.738295"
+  },
+  "metrics": {
+    "loss": 0.503,
+    "accuracy": 0.7842,
+    "f1_weighted": 0.7733,
+    "f1_macro": 0.7576,
+    "f1_micro": 0.7842
+  },
+  "per_class": {
+    "NORM": {
+      "precision": 0.7602,
+      "recall": 0.9333,
+      "f1-score": 0.8379,
+      "support": 795
+    },
+    "ANORM": {
+      "precision": 0.8503,
+      "recall": 0.5626,
+      "f1-score": 0.6772,
+      "support": 535
+    }
+  },
+  "classification_report": {
+    "NORM": {
+      "precision": 0.7602459016393442,
+      "recall": 0.9333333333333333,
+      "f1-score": 0.8379446640316206,
+      "support": 795.0
+    },
+    "ANORM": {
+      "precision": 0.8502824858757062,
+      "recall": 0.5626168224299065,
+      "f1-score": 0.6771653543307087,
+      "support": 535.0
+    },
+    "accuracy": 0.7842105263157895,
+    "macro avg": {
+      "precision": 0.8052641937575252,
+      "recall": 0.7479750778816199,
+      "f1-score": 0.7575550091811647,
+      "support": 1330.0
+    },
+    "weighted avg": {
+      "precision": 0.7964636253735199,
+      "recall": 0.7842105263157895,
+      "f1-score": 0.7732702800541861,
+      "support": 1330.0
+    }
+  },
+  "model_config": {
+    "experiment_name": "ECGFounde_with_weights",
+    "signal_cols": [
+      "signal"
+    ],
+    "feature_cols": null,
+    "label_col": "scp_codes",
+    "amp": true,
+    "num_workers": 4,
+    "persistent_workers": true,
+    "pin_memory": true,
+    "compile_model": true,
+    "epochs": 50,
+    "batch_size": 64,
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "optimizer": "adam",
+    "scheduler": "cosine",
+    "patience": 5,
+    "min_delta": 0.0001,
+    "momentum": 0.9,
+    "step_size": 10,
+    "gamma": 0.1,
+    "sched_patience": 3,
+    "augment": true,
+    "noise_std": 0.01,
+    "scale_low": 0.9,
+    "scale_high": 1.1,
+    "time_shift_pct": 0.1,
+    "class_weight_method": null,
+    "focal_gamma": 2.0,
+    "focal_alpha": null,
+    "rhythm_weight": 0.05,
+    "save_path": "models/weights/ECGFounde_with_weights_binary.pth",
+    "model_type": "binary"
+  },
+  "confusion_matrix": [
+    [
+      742,
+      53
+    ],
+    [
+      234,
+      301
+    ]
+  ],
+  "predictions_summary": {
+    "total_samples": 1330,
+    "correct_predictions": 1043
+  }
+}

@@ -1,0 +1,15 @@
+Test loss: 0.1529 | F1: 0.9423
+
+              precision    recall  f1-score   support
+
+       SBRAD       0.99      1.00      1.00       891
+          SR       0.97      0.97      0.97       591
+       STACH       0.97      0.96      0.97       323
+        AFLT       0.72      0.89      0.80       148
+       SARRH       0.89      0.92      0.90       123
+        AFIB       0.00      0.00      0.00        42
+       SVTAC       0.81      0.81      0.81        42
+
+    accuracy                           0.95      2160
+   macro avg       0.77      0.79      0.78      2160
+weighted avg       0.94      0.95      0.94      2160
