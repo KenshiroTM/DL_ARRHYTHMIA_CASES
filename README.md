@@ -219,7 +219,7 @@ Experiment configuration in `main.py` (`use_multimodal` flag):
 
 ## Authors
 
-- **[Your Name](https://github.com/yourusername)** — Deep learning pipelines, model training, evaluation metrics, experiment design
+- **[kenshirotm](https://github.com/yourusername)** — Deep learning pipelines, model training, evaluation metrics, experiment design
 - **[RaVS02](https://github.com/RaVS02)** — Minimal contributions to this repository; primary work on the hardware acquisition side
 
 > **Related project:** The hardware and acquisition frontend for this ECG system was developed in a companion repository: **[Simple_ECG_AcquisitionPanel](https://github.com/RaVS02/Simple_ECG_AcquisitionPanel)** by RaVS02, which includes the physical PCB design and measurement UI.
