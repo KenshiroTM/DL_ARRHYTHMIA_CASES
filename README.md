@@ -31,13 +31,37 @@ Additionally, an experiment with an **EKG+PPG autoencoder** on the **VitalDB** d
 
 ## Datasets
 
-| Dataset | Purpose | Parameters |
-|---------|---------|------------|
-| **PTB-XL** | Training / test (supervised) | 10 s, 500 Hz, 1000/mV, 16-bit |
-| **Arrhythmia** | Training / test (supervised) | 10 s, 500 Hz, 1000/mV, 16-bit |
-| **VitalDB** | Autoencoder experiment (EKG+PPG) | Multimodal recordings |
+| Dataset | Purpose | Parameters | Classes |
+|---------|---------|------------|---------|
+| **PTB-XL** | Training / test (supervised) | 10 s, 500 Hz, 1000/mV, 16-bit | Normal: 7949, Arrhythmia: 5352 |
+| **Arrhythmia** | Training / test (supervised) | 10 s, 500 Hz, 1000/mV, 16-bit | 5 classes (see below) |
+| **VitalDB** | Autoencoder experiment (EKG+PPG) | Multimodal recordings | ~5829 normal, ~16 AFIB |
 
-Both PTB-XL and Arrhythmia share identical technical parameters (duration, sampling rate, gain, resolution) and can be merged after signal energy normalization.
+Both PTB-XL and Arrhythmia share identical technical parameters (duration, sampling rate, gain, resolution), yet differences in signal energy suggest risk for dataset bias.
+
+### Arrhythmia Dataset — Class Distribution
+
+| Class | Code | Count |
+|-------|------|-------|
+| Sinus Bradycardia | SBRAD | 8909 |
+| Sinus Rhythm | SR | 5908 |
+| Supraventricular Tachycardia | STACH | 3223 |
+| Atrial Flutter | AFLT | 1478 |
+| Sinus Arrhythmia | SARRH | 1234 |
+
+### PTB-XL — Binary Class Distribution
+
+| Class | Count |
+|-------|-------|
+| Normal (NORM) | 7949 |
+| Arrhythmia (ANORM) | 5352 |
+
+### VitalDB — Autoencoder Experiment
+
+| Class | Approx. Count |
+|-------|---------------|
+| Normal | ~5829 |
+| AFIB | ~16 |
 
 ## Project Structure
 
@@ -156,18 +180,19 @@ python main.py
 ```
 
 Experiment configuration in `main.py` (`use_multimodal` flag):
-- `use_multimodal = False` — binary classification + 5-class arrhythmia (ECGFounder vs CustomECGNet)
+- `use_multimodal = False` — binary classification + 5-class arrhythmia exported as separate weights
 - `use_multimodal = True` — EKG+PPG autoencoder experiment on VitalDB
 
 ### Pipeline Flow
 
 1. **Data Preparation** (`database_processing/`)
-   - `dataset_builder.py` — builds all datasets (PTB-XL, Arrhythmia, VitalDB)
+   - `dataset_builder.py` — builds and exports all datasets into parquet files (PTB-XL, Arrhythmia, VitalDB)
    - `deduplicate_records.py` — removes overlapping patients across databases
-   - `preload_data.py` — saves processed signals to `.parquet` cache
+   - `preload_data.py` — preloads all signals from .mat and .dat
+   - `count_labels.py` - counts all of the labels which were exported into csv and parquet, useful for class analysis
 
 2. **Classification Training** (`model_training/classification/`)
-   - `setup_classificator_architecture.py` — selects architecture and initializes weights
+   - `setup_classificator_architecture.py` — selects architecture and initializes weights for classification pipeline, both ECGFounder and Custom can be initialized
    - `train_classificator.py` — training loop with early stopping (patience=5), class weights, augmentation
    - `evaluate_classificator.py` — F1, confusion matrix, export to `results/<config_name>/`
 
@@ -203,7 +228,7 @@ Experiment configuration in `main.py` (`use_multimodal` flag):
 ## Conclusions
 
 - **Transfer learning works:** Fine-tuning ECGFounder on the combined dataset yields 95% accuracy for 5 arrhythmia classes.
-- **Database bias is a real problem:** Two independent weight exports are necessary so the model does not overfit to a single database.
+- **Database bias is a real problem:** Two independent classificator weight exports are necessary so the model does not overfit to a single database.
 - **Binary classification is harder** (~80%) due to class imbalance and subtle differences between "normal" and "arrhythmia".
 - **Unsupervised anomaly detection did not work** (ROC-AUC 51%) — the EKG+PPG autoencoder on VitalDB did not learn a separable representation. Likely cause: excessive inter-patient signal variability.
 
